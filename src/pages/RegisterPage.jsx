@@ -20,9 +20,6 @@ function RegisterPage() {
   const [password, setPassword]
     = useState("")
 
-  const [role, setRole]
-    = useState("USER")
-
   const handleRegister = async (e) => {
 
     e.preventDefault()
@@ -34,8 +31,12 @@ function RegisterPage() {
         {
           username,
           email,
-          password,
-          role
+          password
+        },
+        {
+          headers: {
+            "Content-Type": "application/json"
+          }
         }
       )
 
@@ -46,6 +47,8 @@ function RegisterPage() {
       navigate("/login")
 
     } catch(error) {
+
+      console.error(error)
 
       alert(
         "Registration Failed"
@@ -149,28 +152,6 @@ function RegisterPage() {
                 setPassword(e.target.value)
               }
             />
-
-            <select
-              value={role}
-              onChange={(e) =>
-                setRole(e.target.value)
-              }
-              className="role-select"
-            >
-
-              <option value="USER">
-
-                USER
-
-              </option>
-
-              <option value="ADMIN">
-
-                ADMIN
-
-              </option>
-
-            </select>
 
             <button type="submit">
 
