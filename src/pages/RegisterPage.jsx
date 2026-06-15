@@ -20,6 +20,9 @@ function RegisterPage() {
   const [password, setPassword]
     = useState("")
 
+  const [role, setRole]
+    = useState("USER")
+
   const handleRegister = async (e) => {
 
     e.preventDefault()
@@ -31,7 +34,8 @@ function RegisterPage() {
         {
           username,
           email,
-          password
+          password,
+          role
         },
         {
           headers: {
@@ -152,6 +156,28 @@ function RegisterPage() {
                 setPassword(e.target.value)
               }
             />
+
+            <select
+              value={role}
+              onChange={(e) =>
+                setRole(e.target.value)
+              }
+              className="role-select"
+            >
+
+              <option value="USER">
+
+                USER
+
+              </option>
+
+              <option value="ADMIN">
+
+                ADMIN
+
+              </option>
+
+            </select>
 
             <button type="submit">
 
